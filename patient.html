@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Patient Entry</h2>
+
+Patient ID: <input id="pid"><br><br>
+Name: <input><br><br>
+Age: <input><br><br>
+
+<button onclick="qr()">Generate Barcode</button><br><br>
+
+<img id="barcode">
+
+<script>
+function qr(){
+ let id = document.getElementById("pid").value;
+ document.getElementById("barcode").src =
+ "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+id;
+}
+</script>
+
+</body>
+</html>
