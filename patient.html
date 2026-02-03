@@ -5,18 +5,35 @@
 <h2>Patient Entry</h2>
 
 Patient ID: <input id="pid"><br><br>
-Name: <input><br><br>
-Age: <input><br><br>
+Name: <input id="name"><br><br>
+Age: <input id="age"><br><br>
 
-<button onclick="qr()">Generate Barcode</button><br><br>
+Test:
+<select id="test">
+  <option>CBC</option>
+  <option>Blood Sugar</option>
+  <option>HB</option>
+</select>
+<br><br>
 
-<img id="barcode">
+<button onclick="save()">Save Patient</button>
+
+<p id="msg"></p>
 
 <script>
-function qr(){
- let id = document.getElementById("pid").value;
- document.getElementById("barcode").src =
- "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+id;
+function save(){
+  fetch("PASTE_YOUR_SCRIPT_URL_HERE", {https://script.google.com/macros/s/AKfycbwg9qmF8wSNAn5-5UwaCib0NQ-BPZ7D4K2MW7Z3HukKJePfbGoK81Pl41GG0a3rqfvE/exec
+    method: "POST",
+    body: JSON.stringify({
+      pid: document.getElementById("pid").value,
+      name: document.getElementById("name").value,
+      age: document.getElementById("age").value,
+      test: document.getElementById("test").value
+    })
+  }).then(res=>res.text())
+    .then(data=>{
+      document.getElementById("msg").innerHTML = "✅ Data Saved";
+    });
 }
 </script>
 
